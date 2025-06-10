@@ -3,12 +3,12 @@ version: '3.9'
 services:
   api:
     build:
-      context: ../backend
+      context: . 
+      dockerfile: backend/Dockerfile # Especificamos la ruta al Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ../backend:/app
-      - ./docs:/app/docs 
+      - .:/app # Montamos TODO el proyecto en /app 
     working_dir: /app
     command: uvicorn main:app --host 0.0.0.0 --port 8000
     networks: 
@@ -16,11 +16,12 @@ services:
 
   ui:
     build:
-      context: ../ui
+      context: . 
+      dockerfile: ui/Dockerfile # Especificamos la ruta al Dockerfile
     ports:
       - "7860:7860"
     volumes:
-      - ../ui:/app
+      - .:/app
     working_dir: /app
     command: streamlit run app.py --server.port=7860 --server.address=0.0.0.0
     networks: 
