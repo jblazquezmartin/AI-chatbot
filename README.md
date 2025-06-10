@@ -15,15 +15,15 @@ Nota: Solo necesitas hacer esto la primera vez. El modelo se guardará en un vol
 
 o Puedes usar el script de ayuda proporcionado para descargar el modelo:
 
-   3.1.  **Dar permisos de ejecución al script** (solo la primera vez):
-    ```bash
-    chmod +x llm/download_model.sh
-    ```
+3.1. Dar permisos de ejecución al script** (solo la primera vez):
+```bash
+chmod +x llm/download_model.sh
+```
 
-   3.2.  **Ejecutar el script para descargar `mistral`**:
-    ```bash
-    ./llm/download_model.sh
-    ```
+3.2. Ejecutar el script para descargar `mistral`**:
+```bash
+./llm/download_model.sh
+```
 
 Este comando descargará el modelo `mistral` y lo guardará en un volumen persistente, por lo que solo necesitas hacerlo una vez.
 
