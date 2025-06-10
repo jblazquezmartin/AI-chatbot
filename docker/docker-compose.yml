@@ -9,7 +9,7 @@ services:
       - ../backend:/app            # CORREGIDO: Sube un nivel
       - ../docs:/app/docs          # CORREGIDO: Sube un nivel
     working_dir: /app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     networks:
       - rag-network
 
