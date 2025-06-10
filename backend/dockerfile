@@ -16,7 +16,8 @@ pip install --no-cache-dir \
     uvicorn \
     python-dotenv \
     qdrant-client \
-    ollama
+    ollama \
+    sentence-transformers
 EOF
 
 # Paso 5: Copiar el resto del código de la aplicación al contenedor.
