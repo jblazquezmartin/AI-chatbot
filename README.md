@@ -20,5 +20,5 @@ Nota: Solo necesitas hacer esto la primera vez. El modelo se guardará en un vol
 Coloca archivos `.txt` en la carpeta `docs/` y ejecuta:
 
 ```bash
-docker exec -it <api-container> python ingest/process.py
+docker-compose -f docker/docker-compose.yml exec api python ingest/process.py
 ```
