@@ -8,6 +8,7 @@ from sentence_transformers import SentenceTransformer
 import qdrant_client
 from qdrant_client.http.models import SearchRequest
 import requests
+import traceback
 
 # --- INICIALIZACIÓN (sin cambios) ---
 app = FastAPI()
@@ -90,4 +91,10 @@ async def ask(query: Query):
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=503, detail=f"Error de comunicación con Ollama: {e}")
     except Exception as e:
+        # --- BLOQUE MODIFICADO PARA DEPURACIÓN ---
+        print("--- ERROR INTERNO INESPERADO EN /ask ---")
+        # Imprime el traceback completo en la consola de Docker
+        print(traceback.format_exc())
+        print("-----------------------------------------")
+        # Luego, lanza el error HTTP para que la UI también lo reciba
         raise HTTPException(status_code=500, detail=f"Error interno en la API: {e}")
