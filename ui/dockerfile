@@ -7,7 +7,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Paso 3: Copiar el archivo de requisitos para aprovechar el caché de Docker.
-COPY requirements.txt .
+COPY ./requirements.txt .
 
 # Paso 4: Instalar las dependencias.
 RUN pip install --no-cache-dir -r requirements.txt
