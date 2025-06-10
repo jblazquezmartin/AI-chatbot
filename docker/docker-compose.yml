@@ -2,7 +2,8 @@ version: '3.9'
 
 services:
   api:
-    build: ../backend
+    build:
+      context: ../backend
     ports:
       - "8000:8000"
     volumes:
@@ -11,7 +12,8 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 8000
 
   ui:
-    build: ../ui
+    build:
+      context: ../ui
     ports:
       - "7860:7860"
     volumes:
