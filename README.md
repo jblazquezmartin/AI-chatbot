@@ -27,8 +27,7 @@ o Puedes usar el script de ayuda proporcionado para descargar el modelo:
 
 Este comando descargará el modelo `mistral` y lo guardará en un volumen persistente, por lo que solo necesitas hacerlo una vez.
 
-<details>
-<summary><strong>¿Quieres usar un modelo diferente (ej: Llama 3)?</strong></summary>
+¿Quieres usar un modelo diferente (ej: Llama 3)
 
 Puedes descargar cualquier otro modelo de Ollama ejecutando el script con el nombre del modelo. Por ejemplo:
 
