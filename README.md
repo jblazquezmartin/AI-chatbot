@@ -6,8 +6,13 @@
    ```bash
    docker compose -f docker/docker-compose.yml up --build
    ```
+3. Descarga el modelo de LLM:
+```bash
+docker-compose -f docker/docker-compose.yml exec ollama ollama pull mistral
+```
+Nota: Solo necesitas hacer esto la primera vez. El modelo se guardará en un volumen persistente y estará disponible en futuros inicios.
 
-3. Abre:
+5. Abre:
    - `http://localhost:7860` → UI
    - `http://localhost:8000/ask` → API POST
 
