@@ -2,6 +2,7 @@
 
 ## Cómo usar
 1. Instala Docker y Docker Compose
+
 2. Ejecuta:
    ```bash
    docker compose -f docker/docker-compose.yml up --build
@@ -13,7 +14,20 @@ docker-compose -f docker/docker-compose.yml exec ollama ollama pull mistral
 ```
 Nota: Solo necesitas hacer esto la primera vez. El modelo se guardará en un volumen persistente y estará disponible en futuros inicios.
 
-o Puedes usar el script de ayuda proporcionado para descargar el modelo:
+4. Abre:
+   - `http://localhost:7860` → UI
+   - `http://localhost:8000/ask` → API POST
+
+## Ingesta
+Coloca archivos `.txt` en la carpeta `docs/` y ejecuta:
+
+```bash
+docker-compose -f docker/docker-compose.yml exec api python ingest/process.py
+```
+
+<details>
+<summary><strong>¿Quieres usar un modelo diferente (ej: Llama 3)?</strong></summary>
+Puedes usar el script de ayuda proporcionado para descargar el modelo:
 
 3.1. Dar permisos de ejecución al script** (solo la primera vez):
 ```bash
@@ -36,14 +50,3 @@ Puedes descargar cualquier otro modelo de Ollama ejecutando el script con el nom
  ```
 
 ¡Importante! Si eliges un modelo que no sea mistral, debes actualizar el código fuente para que la API lo utilice. Edita el archivo backend/main.py y modifica la variable donde se define el nombre del modelo.
-
-4. Abre:
-   - `http://localhost:7860` → UI
-   - `http://localhost:8000/ask` → API POST
-
-## Ingesta
-Coloca archivos `.txt` en la carpeta `docs/` y ejecuta:
-
-```bash
-docker-compose -f docker/docker-compose.yml exec api python ingest/process.py
-```
