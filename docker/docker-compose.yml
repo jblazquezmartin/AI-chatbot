@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: . 
-      dockerfile: backend/Dockerfile # Especificamos la ruta al Dockerfile
+      dockerfile: backend/dockerfile # Especificamos la ruta al Dockerfile
     ports:
       - "8000:8000"
     volumes:
@@ -17,7 +17,7 @@ services:
   ui:
     build:
       context: . 
-      dockerfile: ui/Dockerfile # Especificamos la ruta al Dockerfile
+      dockerfile: ui/dockerfile # Especificamos la ruta al Dockerfile
     ports:
       - "7860:7860"
     volumes:
