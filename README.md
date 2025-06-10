@@ -5,7 +5,7 @@
 
 2. Ejecuta:
    ```bash
-   docker compose -f docker/docker-compose.yml up --build
+   docker compose up --build
    ```
 3. El contenedor de Ollama se inicia vacío. Para que la aplicación funcione, necesitas descargar un modelo. El proyecto está configurado para usar **`mistral`** por defecto.
    Descarga el modelo de LLM:
