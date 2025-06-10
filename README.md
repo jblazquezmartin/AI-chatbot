@@ -35,6 +35,8 @@ Puedes descargar cualquier otro modelo de Ollama ejecutando el script con el nom
 ./llm/download_model.sh llama3
  ```
 
+¡Importante! Si eliges un modelo que no sea mistral, debes actualizar el código fuente para que la API lo utilice. Edita el archivo backend/main.py y modifica la variable donde se define el nombre del modelo.
+
 4. Abre:
    - `http://localhost:7860` → UI
    - `http://localhost:8000/ask` → API POST
