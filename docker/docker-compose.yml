@@ -51,4 +51,3 @@ networks:
 volumes:
   qdrant_storage:
   ollama:
-  ollama:
