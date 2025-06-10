@@ -24,7 +24,6 @@ Coloca archivos `.txt` en la carpeta `docs/` y ejecuta:
 ```bash
 docker-compose -f docker/docker-compose.yml exec api python ingest/process.py
 ```
-
 <details>
 <summary><strong>¿Quieres usar un modelo diferente (ej: Llama 3)?</strong></summary>
 Puedes usar el script de ayuda proporcionado para descargar el modelo:
@@ -33,20 +32,13 @@ Puedes usar el script de ayuda proporcionado para descargar el modelo:
 ```bash
 chmod +x llm/download_model.sh
 ```
-
 3.2. Ejecutar el script para descargar `mistral`**:
 ```bash
 ./llm/download_model.sh
 ```
-
-Este comando descargará el modelo `mistral` y lo guardará en un volumen persistente, por lo que solo necesitas hacerlo una vez.
-
-¿Quieres usar un modelo diferente (ej: Llama 3)
-
 Puedes descargar cualquier otro modelo de Ollama ejecutando el script con el nombre del modelo. Por ejemplo:
 
 ```bash
 ./llm/download_model.sh llama3
  ```
-
 ¡Importante! Si eliges un modelo que no sea mistral, debes actualizar el código fuente para que la API lo utilice. Edita el archivo backend/main.py y modifica la variable donde se define el nombre del modelo.
