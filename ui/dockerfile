@@ -6,11 +6,13 @@ FROM python:3.9-slim
 # Paso 2: Establecer el directorio de trabajo.
 WORKDIR /app
 
-# Paso 3: Copiar el archivo de requisitos para aprovechar el caché de Docker.
-COPY ./requirements.txt .
-
-# Paso 4: Instalar las dependencias.
-RUN pip install --no-cache-dir -r requirements.txt
+# Paso 3 y 4: Instalar dependencias directamente desde el Dockerfile
+# Misma técnica 'heredoc' para el frontend.
+RUN <<EOF
+pip install --no-cache-dir \
+    streamlit \
+    requests
+EOF
 
 # Paso 5: Copiar el resto del código de la interfaz de usuario.
 COPY . .
