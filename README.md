@@ -28,11 +28,11 @@ docker-compose -f docker/docker-compose.yml exec api python ingest/process.py
 <summary><strong>¿Quieres usar un modelo diferente (ej: Llama 3)?</strong></summary>
 Puedes usar el script de ayuda proporcionado para descargar el modelo:
 
-3.1. Dar permisos de ejecución al script** (solo la primera vez):
+1. Dar permisos de ejecución al script** (solo la primera vez):
 ```bash
 chmod +x llm/download_model.sh
 ```
-3.2. Ejecutar el script para descargar `mistral`**:
+2. Ejecutar el script para descargar `mistral`**:
 ```bash
 ./llm/download_model.sh
 ```
