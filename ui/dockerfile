@@ -1,0 +1,20 @@
+# ui/Dockerfile
+
+# Paso 1: Usar la misma imagen base de Python para mantener la consistencia.
+FROM python:3.9-slim
+
+# Paso 2: Establecer el directorio de trabajo.
+WORKDIR /app
+
+# Paso 3: Copiar el archivo de requisitos para aprovechar el caché de Docker.
+COPY requirements.txt .
+
+# Paso 4: Instalar las dependencias.
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Paso 5: Copiar el resto del código de la interfaz de usuario.
+COPY . .
+
+# Paso 6: El comando para ejecutar la aplicación Streamlit.
+# De nuevo, es buena práctica tenerlo aquí aunque docker-compose.yml lo anule.
+CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]
