@@ -4,26 +4,28 @@ services:
   api:
     build:
       context: . 
-      dockerfile: backend/dockerfile # Especificamos la ruta al Dockerfile
+      dockerfile: backend/Dockerfile # CORREGIDO: 'Dockerfile' con mayúscula
     ports:
       - "8000:8000"
     volumes:
-      - .:/app # Montamos TODO el proyecto en /app 
+      - .:/app 
     working_dir: /app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    # CORREGIDO: Se añade la ruta 'backend.' al módulo de Python
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
     networks: 
       - rag-network
 
   ui:
     build:
       context: . 
-      dockerfile: ui/dockerfile # Especificamos la ruta al Dockerfile
+      dockerfile: ui/Dockerfile # CORREGIDO: 'Dockerfile' con mayúscula
     ports:
       - "7860:7860"
     volumes:
       - .:/app
     working_dir: /app
-    command: streamlit run app.py --server.port=7860 --server.address=0.0.0.0
+    # CORREGIDO: Se añade la ruta completa al script de Streamlit
+    command: streamlit run ui/app.py --server.port=7860 --server.address=0.0.0.0
     networks: 
       - rag-network
 
