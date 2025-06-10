@@ -1,0 +1,25 @@
+# backend/Dockerfile
+
+# Paso 1: Usar una imagen base de Python ligera y oficial.
+FROM python:3.9-slim
+
+# Paso 2: Establecer el directorio de trabajo dentro del contenedor.
+# Todos los comandos siguientes se ejecutarán desde /app.
+WORKDIR /app
+
+# Paso 3: Copiar solo el archivo de requisitos primero.
+# Esto es una optimización clave. Docker guarda en caché cada paso (capa).
+# Si no cambias tus dependencias, no se volverán a instalar cada vez que cambies tu código.
+COPY requirements.txt .
+
+# Paso 4: Instalar las dependencias de Python.
+# --no-cache-dir reduce el tamaño final de la imagen.
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Paso 5: Copiar el resto del código de la aplicación al contenedor.
+COPY . .
+
+# Paso 6: El comando para ejecutar la aplicación.
+# docker-compose.yml ya lo define, pero es una buena práctica incluirlo aquí
+# para que la imagen se pueda ejecutar de forma independiente.
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
