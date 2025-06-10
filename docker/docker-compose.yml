@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  api:
+    build: ../backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app
+    working_dir: /app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+
+  ui:
+    build: ../ui
+    ports:
+      - "7860:7860"
+    volumes:
+      - ../ui:/app
+    working_dir: /app
+    command: streamlit run app.py --server.port=7860 --server.address=0.0.0.0
+
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  qdrant_storage:
+  ollama:

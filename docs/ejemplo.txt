@@ -1,0 +1,1 @@
+Mistral es un modelo de lenguaje de código abierto altamente eficiente y preciso. Este modelo se puede usar para tareas de QA, resumen y generación de texto.
