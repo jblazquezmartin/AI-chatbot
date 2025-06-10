@@ -10,6 +10,8 @@ services:
       - ../backend:/app
     working_dir: /app
     command: uvicorn main:app --host 0.0.0.0 --port 8000
+    networks: 
+      - rag-network
 
   ui:
     build:
@@ -20,6 +22,8 @@ services:
       - ../ui:/app
     working_dir: /app
     command: streamlit run app.py --server.port=7860 --server.address=0.0.0.0
+    networks: 
+      - rag-network
 
   qdrant:
     image: qdrant/qdrant
@@ -27,6 +31,8 @@ services:
       - "6333:6333"
     volumes:
       - qdrant_storage:/qdrant/storage
+    networks: 
+      - rag-network
 
   ollama:
     image: ollama/ollama
@@ -34,6 +40,12 @@ services:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
+    networks: 
+      - rag-network
+
+networks:
+  rag-network:
+    driver: bridge
 
 volumes:
   qdrant_storage:
