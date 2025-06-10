@@ -59,7 +59,7 @@ async def ask(query: Query):
         
         # 4. Comprobar si hay contexto relevante
         if not filtered_hits:
-            return {"answer": "No tengo suficiente información en mi base de conocimiento para responder a esa pregunta."}
+            return {"answer": "Pregunta sobre jugadores de NBA 2025, no tengo contexto para esa pregunta."}
         
         # 5. Construir el contexto USANDO LOS RESULTADOS FILTRADOS
         context = "\n".join([hit.payload["text"] for hit in filtered_hits if "text" in hit.payload])
