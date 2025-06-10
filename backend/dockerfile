@@ -7,14 +7,17 @@ FROM python:3.9-slim
 # Todos los comandos siguientes se ejecutarán desde /app.
 WORKDIR /app
 
-# Paso 3: Copiar solo el archivo de requisitos primero.
-# Esto es una optimización clave. Docker guarda en caché cada paso (capa).
-# Si no cambias tus dependencias, no se volverán a instalar cada vez que cambies tu código.
-COPY ./requirements.txt .
-
-# Paso 4: Instalar las dependencias de Python.
-# --no-cache-dir reduce el tamaño final de la imagen.
-RUN pip install --no-cache-dir -r requirements.txt
+# Paso 3 y 4: Instalar dependencias directamente desde el Dockerfile
+# Usamos una técnica 'heredoc' para pasar texto directamente a pip.
+# Esto evita por completo la necesidad de un 'COPY requirements.txt'.
+RUN <<EOF
+pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    python-dotenv \
+    qdrant-client \
+    ollama
+EOF
 
 # Paso 5: Copiar el resto del código de la aplicación al contenedor.
 COPY . .
