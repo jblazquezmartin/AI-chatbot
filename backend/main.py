@@ -26,6 +26,13 @@ async def ask(query: Query):
             with_payload=True
         )
     )
+
+     # Filtrar resultados por umbral de similitud (score)
+    filtered_hits = [hit for hit in hits if hit.score and hit.score > 0.75]
+    
+    if not filtered_hits:
+        return {"answer": "No tengo suficiente información para responder con contexto."}
+        
     context = "\n".join([hit.payload["text"] for hit in hits if "text" in hit.payload])
     prompt = f"Contexto:\n{context}\n\nPregunta: {query.question}\nRespuesta:"
 
