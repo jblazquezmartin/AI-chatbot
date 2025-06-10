@@ -46,11 +46,9 @@ async def ask(query: Query):
         # 2. Buscar en Qdrant
         hits = client.search(
             collection_name=COLLECTION_NAME,
-            search_request=SearchRequest(
-                vector=question_embedding,
-                limit=5,
-                with_payload=True
-            )
+            query_vector=question_embedding, # <-- Usamos el argumento directo
+            limit=5,
+            with_payload=True
         )
         print(f"Búsqueda en Qdrant encontró {len(hits)} resultados.")
 
