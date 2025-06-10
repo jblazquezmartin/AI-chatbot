@@ -1,32 +1,29 @@
-version: '3.9'
-
 services:
   api:
     build:
-      context: . 
-      dockerfile: backend/Dockerfile # CORREGIDO: 'Dockerfile' con mayúscula
+      context: ../backend          # CORREGIDO: Sube un nivel para encontrar 'backend'
+      dockerfile: dockerfile       # CORREGIDO: Usa 'dockerfile' en minúsculas
     ports:
       - "8000:8000"
     volumes:
-      - .:/app 
+      - ../backend:/app            # CORREGIDO: Sube un nivel
+      - ../docs:/app/docs          # CORREGIDO: Sube un nivel
     working_dir: /app
-    # CORREGIDO: Se añade la ruta 'backend.' al módulo de Python
-    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
-    networks: 
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    networks:
       - rag-network
 
   ui:
     build:
-      context: . 
-      dockerfile: ui/Dockerfile # CORREGIDO: 'Dockerfile' con mayúscula
+      context: ../ui               # CORREGIDO: Sube un nivel para encontrar 'ui'
+      dockerfile: dockerfile       # CORREGIDO: Usa 'dockerfile' en minúsculas
     ports:
       - "7860:7860"
     volumes:
-      - .:/app
+      - ../ui:/app                 # CORREGIDO: Sube un nivel
     working_dir: /app
-    # CORREGIDO: Se añade la ruta completa al script de Streamlit
-    command: streamlit run ui/app.py --server.port=7860 --server.address=0.0.0.0
-    networks: 
+    command: streamlit run app.py --server.port=7860 --server.address=0.0.0.0
+    networks:
       - rag-network
 
   qdrant:
@@ -35,7 +32,7 @@ services:
       - "6333:6333"
     volumes:
       - qdrant_storage:/qdrant/storage
-    networks: 
+    networks:
       - rag-network
 
   ollama:
@@ -44,7 +41,7 @@ services:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
-    networks: 
+    networks:
       - rag-network
 
 networks:
@@ -53,4 +50,5 @@ networks:
 
 volumes:
   qdrant_storage:
+  ollama:
   ollama:
